@@ -18,7 +18,7 @@ namespace Integral_Derivative
         double dh;//delta asin(theta)
         double n;//end value
         double da;//delta a
-        double derivative;	//Derivative
+        double fx;//Function
         Random r;
         public IntegralDerivative()
         {
@@ -27,22 +27,18 @@ namespace Integral_Derivative
             r=new Random();
             for (qn = 0.0; qn < n-da;)
             {
-                theta = Math.Atan(Function(qn));
+                fx=Function(qn);
+                theta = Math.Atan(fx);
                 dw = da * Math.Cos(theta);
                 qn += dw;
-                derivative = Prime(qn);
                 dh = da * Math.Sin(theta);
                 ih += dh;
-                Console.Write("{0} {1} {2}\n", qn,derivative,ih);
+                Console.Write("{0} {1} {2}\n", qn,ih,fx);
             }       
         }
         public double Function(double x)
         {
             return r.NextDouble();
-        }
-        public double Prime(double x)
-        {
-            return (Function(x + dw) - Function(x))/dw;
         }
     }
 }
