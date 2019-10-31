@@ -11,13 +11,13 @@ namespace Integral_Derivative
     }
     public class IntegralDerivative
     {
-        double theta;				//angle
-        double qn;					//qn
-        double ih;					//Integral
-        double dw;					//delta acos(theta)
-        double dh;					//delta asin(theta)
-        double n;						//end value
-        double da;					//delta a
+        double theta;//angle
+        double qn;//qn
+        double ih;//Integral
+        double dw;//delta acos(theta)
+        double dh;//delta asin(theta)
+        double n;//end value
+        double da;//delta a
         double derivative;	//Derivative
         public IntegralDerivative()
         {
