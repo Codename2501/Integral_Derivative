@@ -1,0 +1,46 @@
+using System;
+namespace Integral_Derivative
+{
+    public class MainRoutine
+    {
+        [STAThread]
+        static void Main()
+        {
+           _= new IntegralDerivative();
+        }
+    }
+    public class IntegralDerivative
+    {
+        double theta;				//angle
+        double qn;					//qn
+        double ih;					//Integral
+        double dw;					//delta acos(theta)
+        double dh;					//delta asin(theta)
+        double n;						//end value
+        double da;					//delta a
+        double derivative;	//Derivative
+        public IntegralDerivative()
+        {
+            da = 1.0e-5;
+            n = 1.0;
+            for (qn = 0.0; qn < n-da;)
+            {
+                theta = Math.Atan(Function(qn));
+                dw = da * Math.Cos(theta);
+                qn += dw;
+                derivative = Prime(qn);
+                dh = da * Math.Sin(theta);
+                ih += dh;
+                Console.Write("{0} {1} {2}\n", qn,derivative,ih);
+            }       
+        }
+        public double Function(double x)
+        {
+            return x*x;
+        }
+        public double Prime(double x)
+        {
+            return (Function(x + dw) - Function(x))/dw;
+        }
+    }
+}
