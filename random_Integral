@@ -19,6 +19,7 @@ namespace Integral_Derivative
         double n;//end value
         double da;//delta a
         double fx;//Function
+        double fx0;//PreFunction
         Random r;
         public IntegralDerivative()
         {
@@ -27,18 +28,23 @@ namespace Integral_Derivative
             r=new Random();
             for (qn = 0.0; qn < n-da;)
             {
+                fx0=fx;
                 fx=Function(qn);
                 theta = Math.Atan(fx);
                 dw = da * Math.Cos(theta);
                 qn += dw;
                 dh = da * Math.Sin(theta);
                 ih += dh;
-                Console.Write("{0} {1} {2}\n", qn,ih,fx);
+                Console.Write("{0} {1} {2} {3}\n", qn,ih,fx,prime());
             }       
         }
         public double Function(double x)
         {
             return r.NextDouble();
+        }
+        public double Prime()
+        {
+            (fx-fx0)/dw;
         }
     }
 }
