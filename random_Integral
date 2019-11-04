@@ -1,50 +1,54 @@
 using System;
-namespace Integral_Derivative
+namespace Differential_Integration2
 {
     public class MainRoutine
     {
         [STAThread]
         static void Main()
         {
-           _= new IntegralDerivative();
+            _ = new Differential_Integration();
         }
     }
-    public class IntegralDerivative
+    public class Differential_Integration
     {
-        double theta;//angle
-        double qn;//qn
-        double ih;//Integral
-        double dw;//delta acos(theta)
-        double dh;//delta asin(theta)
-        double n;//end value
-        double da;//delta a
-        double fx;//Function
-        double fx0;//PreFunction
+        //∮[0,1] random dx
+        //limit[da->0] (fx-fx0)/dw
         Random r;
-        public IntegralDerivative()
+        public Differential_Integration()
         {
+            double theta;//angle
+            double qn;//qn
+            double ih;//Integral
+            double dw;//delta acos(theta)
+            double dh;//delta asin(theta)
+            double n;//end value
+            double da;//delta a
+            double fx,fx0;//Function
+            double diff;//differential
             da = 1.0e-5;
             n = 1.0;
-            r=new Random();
-            for (qn = 0.0; qn < n-da;)
+            r = new Random();
+            fx = ih = 0.0;
+            for (qn = 0.0; qn < n - da;)
             {
-                fx0=fx;
-                fx=Function(qn);
+                fx0 = fx;
+                fx = Function(qn);
                 theta = Math.Atan(fx);
                 dw = da * Math.Cos(theta);
-                qn += dw;
+                diff = Prime(fx, fx0, dw);
                 dh = da * Math.Sin(theta);
+                Console.Write("{0} {1} {2} {3}\n", qn, ih, fx, diff);
+                qn += dw;
                 ih += dh;
-                Console.Write("{0} {1} {2} {3}\n", qn,ih,fx,prime());
-            }       
+            }
         }
         public double Function(double x)
         {
             return r.NextDouble();
         }
-        public double Prime()
+        public double Prime(double fx,double fx0,double dw)
         {
-            (fx-fx0)/dw;
+            return (fx - fx0) / dw;
         }
     }
 }
