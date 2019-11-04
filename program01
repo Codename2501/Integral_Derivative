@@ -21,7 +21,7 @@ namespace Differential_and_Integration
             double ih;//Integral
             double dw;//delta acos(theta)
             double dh;//delta asin(theta)
-            double n;//endd value
+            double n;//end value
             double da;//delta a
             double diff;//differential
             da = 1.0e-4;
