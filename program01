@@ -1,46 +1,52 @@
 using System;
-namespace Integral_Derivative
+
+namespace Differential_and_Integration
 {
-    public class MainRoutine
+    class MainClass
     {
-        [STAThread]
-        static void Main()
+        public static void Main(string[] args)
         {
-           _= new IntegralDerivative();
+            _ = new Differential_Integration();
         }
     }
-    public class IntegralDerivative
+    //∮[0,1] x^2 dx
+    //lim[da->0] (fx-fx0)/dw
+    class Differential_Integration
     {
-        double theta;//angle
-        double qn;//qn
-        double ih;//Integral
-        double dw;//delta acos(theta)
-        double dh;//delta asin(theta)
-        double n;//end value
-        double da;//delta a
-        double derivative;	//Derivative
-        public IntegralDerivative()
+        public Differential_Integration()
         {
-            da = 1.0e-5;
+            double fx,fx0;//Function
+            double theta;//angle
+            double qn;//qn
+            double ih;//Integral
+            double dw;//delta acos(theta)
+            double dh;//delta asin(theta)
+            double n;//endd value
+            double da;//delta a
+            double diff;//differential
+            da = 1.0e-4;
             n = 1.0;
-            for (qn = 0.0; qn < n-da;)
+            fx = ih = 0.0;
+            for (qn = 0.0; qn < n;)
             {
-                theta = Math.Atan(Function(qn));
+                fx0 = fx;
+                fx = Function(qn);
+                theta = Math.Atan(fx);
                 dw = da * Math.Cos(theta);
-                qn += dw;
-                derivative = Prime(qn);
+                diff = Prime(fx,fx0,dw);
                 dh = da * Math.Sin(theta);
+                Console.Write("{0} {1} {2} {3}\n", qn, diff, fx, ih);
+                qn += dw;
                 ih += dh;
-                Console.Write("{0} {1} {2}\n", qn,derivative,ih);
-            }       
+            }
         }
         public double Function(double x)
         {
-            return x*x;
+            return x * x;
         }
-        public double Prime(double x)
+        public double Prime(double fx,double fx0,double dw)
         {
-            return (Function(x + dw) - Function(x))/dw;
+            return (fx - fx0) / dw;
         }
     }
 }
