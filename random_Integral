@@ -35,7 +35,7 @@ namespace Differential_Integration2
                 fx = Function(qn);
                 theta = Math.Atan(fx);
                 dw = da * Math.Cos(theta);
-                diff = Prime(fx, fx0, dw);
+                diff = Differential(fx, fx0, dw);
                 dh = da * Math.Sin(theta);
                 Console.Write("{0} {1} {2} {3}\n", qn, ih, fx, diff);
                 qn += dw;
@@ -46,7 +46,7 @@ namespace Differential_Integration2
         {
             return r.NextDouble();
         }
-        public double Prime(double fx,double fx0,double dw)
+        public double Differential(double fx,double fx0,double dw)
         {
             return (fx - fx0) / dw;
         }
